@@ -154,146 +154,43 @@ footer { text-align: center; padding: 1.5rem; background: var(--header-bg); colo
 #settingsPanel button:hover {
   background: var(--primary-strong);
 }
+    .contact-icons {
+  margin-top: 15px;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.contact-icon {
+  font-size: 2.5rem;
+  color: #8b0000; /* deep red */
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.contact-icon:hover {
+  transform: scale(1.2);
+  color: #ff4d4d; /* brighter red on hover */
+}
+
+/* WhatsApp specific */
+.contact-icon.whatsapp {
+  color: #25D366;
+}
+
+.contact-icon.whatsapp:hover {
+  color: #128C7E;
+}
+
+/* Email specific */
+.contact-icon.email {
+  color: #8b0000;
+}
+
+.contact-icon.email:hover {
+  color: #ff4d4d;
+}
     
   </style>
-  
-  <!--<style>
-    :root {
-      --bg: #f9f9f9;
-      --text: #333333;
-      --muted: #666666;
-      --primary: #005f73;
-      --primary-strong: #0a9396;
-      --header-bg: #001219;
-      --card-bg: #ffffff;
-      --shadow: 0 4px 6px rgba(0,0,0,0.1);
-    }
-    [data-theme="dark"] {
-      --bg: #0b0f13;
-      --text: #e6e6e6;
-      --muted: #b3b3b3;
-      --primary: #3aa6b9;
-      --primary-strong: #65c0c7;
-      --header-bg: #000a0f;
-      --card-bg: #0f141a;
-      --shadow: 0 8px 20px rgba(0,0,0,0.35);
-    }
-    [data-theme="purple"] {
-      --bg: #faf6ff;
-      --text: #2b1d35;
-      --muted: #6e4f86;
-      --primary: #7b2cbf;
-      --primary-strong: #9d4edd;
-      --header-bg: #240046;
-      --card-bg: #fff;
-      --shadow: 0 4px 10px rgba(123,44,191,0.2);
-    }
-
-    * { box-sizing: border-box; }
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      line-height: 1.6;
-      color: var(--text);
-      background: var(--bg);
-      transition: background .3s ease, color .3s ease;
-      font-size: 16px;
-    }
-
-    header {
-      background: var(--header-bg);
-      color: white;
-      padding: 2rem;
-      text-align: center;
-    }
-    header h1 { margin: 0; font-size: 2.5rem; }
-    header p { margin: .5rem 0 0; font-size: 1.2rem; color: #e6f1f2; }
-
-    nav { background: var(--primary); padding: 1rem; text-align: center; }
-    nav a { color: white; margin: 0 15px; text-decoration: none; font-weight: bold; }
-    nav a:hover { text-decoration: underline; }
-
-    section { max-width: 900px; margin: 2rem auto; padding: 0 1rem; }
-    h2 { 
-      color: var(--header-bg); 
-      margin-bottom: 1rem; 
-      border-bottom: 2px solid var(--primary); 
-      display: inline-block; 
-      padding-bottom: 5px;
-    }
-    [data-theme="dark"] h2 { color: #e9f6f7; }
-    [data-theme="purple"] h2 { color: var(--primary); }
-
-    .projects { 
-      display: grid; 
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); 
-      gap: 1.5rem; 
-    }
-    .card {
-      background: var(--card-bg);
-      border-radius: 10px;
-      box-shadow: var(--shadow);
-      padding: 1rem;
-      transition: transform .3s ease, box-shadow .3s ease, background .3s ease;
-      border: 1px solid rgba(0,0,0,0.05);
-    }
-    [data-theme="dark"] .card { border-color: rgba(255,255,255,0.06); }
-    .card:hover { transform: translateY(-5px); box-shadow: 0 10px 22px rgba(0,0,0,0.18); }
-    .card img { max-width: 100%; border-radius: 10px; display: block; }
-
-    .btn { 
-      display: inline-block; padding: 10px 20px; margin-top: 10px; 
-      background: var(--primary); color: white; border-radius: 5px; 
-      text-decoration: none; transition: background .3s; 
-    }
-    .btn:hover { background: var(--primary-strong); }
-
-    footer { text-align: center; padding: 1.5rem; background: var(--header-bg); color: white; }
-
-    /* Floating Gear */
-    .fab {
-      position: fixed;
-      right: 16px; bottom: 16px;
-      width: 52px; height: 52px;
-      border: none; border-radius: 50%;
-      background: var(--primary);
-      box-shadow: var(--shadow);
-      color: #fff; cursor: pointer;
-      display: inline-flex; align-items: center; justify-content: center;
-      transition: background .3s ease, box-shadow .3s ease;
-      font-size: 24px;
-      z-index: 1000;
-      animation: spin 2s linear infinite;
-    }
-    @keyframes spin { from { transform: rotate(0); } to { transform: rotate(360deg); } }
-
-    /* Settings Panel */
-    #settingsPanel {
-      position: fixed;
-      bottom: 80px;
-      right: 16px;
-      background: var(--card-bg);
-      border-radius: 10px;
-      box-shadow: var(--shadow);
-      padding: 1rem;
-      display: none;
-      z-index: 999;
-    }
-    #settingsPanel button {
-      display: block;
-      margin: 0.5rem 0;
-      padding: 0.5rem 1rem;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      background: var(--primary);
-      color: #fff;
-    }
-    #settingsPanel button:hover {
-      background: var(--primary-strong);
-    }
-  </style>
-  -->
 </head>
 <body>
   <header>
@@ -346,14 +243,29 @@ footer { text-align: center; padding: 1.5rem; background: var(--header-bg); colo
       </div>
     </div>
   </section>
-
+<section id="contact">
+  <h2>Contact</h2>
+  <p>If you'd like to work with me, feel free to reach out!</p>
+  <div class="contact-icons">
+    <!-- WhatsApp -->
+    <a href="https://wa.me/2349046464822" target="_blank" class="contact-icon whatsapp">
+      <i class="fab fa-whatsapp"></i>
+    </a>
+    <!-- Email -->
+    <a href="mailto:olajideaz1030@gmail.com" class="contact-icon email">
+      <i class="fas fa-envelope"></i>
+    </a>
+  </div>
+</section>
+  
+  <!--
   <section id="contact">
     <h2>Contact</h2>
     <p>If you'd like to work with me, feel free to reach out!</p>
     <p>Email: <a href="mailto:olajideaz1030@gmail.com">olajideaz1030@gmail.com</a></p>
     <p>WhatsApp: <a href="https://wa.me/2349046464822" target="_blank">+2349046464822</a></p>
   </section>
-
+-->
   <footer>
     <p>&copy; 2025 Olajide Azeez. All Rights Reserved.</p>
   </footer>
