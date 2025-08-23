@@ -158,42 +158,32 @@ footer { text-align: center; padding: 1.5rem; background: var(--header-bg); colo
 #settingsPanel button:hover {
   background: var(--primary-strong);
 }
-    .contact-icons {
-  margin-top: 15px;
+.contact-icons {
   display: flex;
-  justify-content: center;
   gap: 20px;
+  justify-content: center;
+  margin-top: 15px;
 }
 
-.contact-icon {
-  font-size: 2.5rem;
-  color: #8b0000; /* deep red */
+.contact-icons a {
+  font-size: 2rem;
+  color: #8B0000; /* deep red */
   transition: transform 0.3s ease, color 0.3s ease;
 }
 
-.contact-icon:hover {
+.contact-icons a:hover {
+  color: #ff3333;
   transform: scale(1.2);
-  color: #ff4d4d; /* brighter red on hover */
+  animation: pulse 1s infinite;
 }
 
-/* WhatsApp specific */
-.contact-icon.whatsapp {
-  color: #25D366;
+@keyframes pulse {
+  0%   { transform: scale(1); }
+  50%  { transform: scale(1.2); }
+  100% { transform: scale(1); }
 }
 
-.contact-icon.whatsapp:hover {
-  color: #128C7E;
-}
-
-/* Email specific */
-.contact-icon.email {
-  color: #8b0000;
-}
-
-.contact-icon.email:hover {
-  color: #ff4d4d;
-}
-    
+  
   </style>
 </head>
 <body>
@@ -248,17 +238,15 @@ footer { text-align: center; padding: 1.5rem; background: var(--header-bg); colo
       </div>
     </div>
   </section>
-<section id="contact">
+  <section id="contact">
   <h2>Contact</h2>
   <p>If you'd like to work with me, feel free to reach out!</p>
   <div class="contact-icons">
-    <!-- WhatsApp -->
-    <a href="https://wa.me/2349046464822" target="_blank" class="contact-icon whatsapp">
-      <i class="fab fa-whatsapp"></i>
-    </a>
-    <!-- Email -->
-    <a href="mailto:olajideaz1030@gmail.com" class="contact-icon email">
+    <a href="mailto:olajideaz1030@gmail.com" target="_blank">
       <i class="fas fa-envelope"></i>
+    </a>
+    <a href="https://wa.me/2349046464822" target="_blank">
+      <i class="fab fa-whatsapp"></i>
     </a>
   </div>
 </section>
