@@ -273,6 +273,23 @@ footer { text-align: center; padding: 1.5rem; background: var(--header-bg); colo
   #contact a[href^="mailto"]:hover i {
     color: #0072c6;
   }
+  #contact a {
+  font-size: 2rem;
+  margin: 0 15px;
+  display: inline-block;
+  transition: transform 0.3s ease, color 0.3s ease;
+  color: #e63946; /* deep red */
+}
+
+#contact a:hover {
+  transform: scale(1.2);
+  color: #ff4d4d; /* brighter red on hover */
+}
+
+/* Force icons visible in dark mode */
+body.dark-theme #contact a {
+  color: #e63946 !important;
+}
 </style>
 
 <section id="contact">
