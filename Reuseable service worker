@@ -1,0 +1,162 @@
+/* sw.js — Olajide Azeez portfolio
+   Auto-update strategy: precache core, SWR for static assets, network-first for pages.
+   Change CACHE_VERSION on each deploy to force an update.
+*/
+const CACHE_VERSION = 'v1.0.0';              // ⬅️ bump this on each deploy
+const APP_CACHE    = `olajide-cache-${CACHE_VERSION}`;
+
+// GitHub Pages base path (e.g., /Olajide-azeezportfolio/)
+const BASE_PATH = new URL(self.registration.scope).pathname;
+
+// Core files to precache (add/remove as needed)
+const PRECACHE_URLS = [
+  `${BASE_PATH}`,                 // root
+  `${BASE_PATH}index.html`,
+  // Add your static files if they exist:
+  // `${BASE_PATH}styles.css`,
+  // `${BASE_PATH}script.js`,
+  // `${BASE_PATH}favicon.ico`,
+  // `${BASE_PATH}assets/logo.svg`,
+];
+
+self.addEventListener('install', (event) => {
+  event.waitUntil(
+    caches.open(APP_CACHE)
+      .then((cache) => cache.addAll(PRECACHE_URLS))
+      .then(() => self.skipWaiting()) // activate new SW immediately
+  );
+});
+
+self.addEventListener('activate', (event) => {
+  event.waitUntil(
+    (async () => {
+      // Clean old caches
+      const keys = await caches.keys();
+      await Promise.all(keys.map((k) => (k !== APP_CACHE ? caches.delete(k) : null)));
+      await self.clients.claim(); // start controlling pages right away
+    })()
+  );
+});
+
+// Helper: decide strategy by request type
+function strategyFor(request) {
+  const url = new URL(request.url);
+  const sameOrigin = url.origin === location.origin;
+
+  // HTML/page navigations → Network First (fallback to cache)
+  if (request.mode === 'navigate' || (request.destination === 'document')) {
+    return networkFirst(request);
+  }
+
+  // Static assets on SAME origin → Stale-While-Revalidate
+  if (sameOrigin && ['style','script','image','font'].includes(request.destination)) {
+    return staleWhileRevalidate(request);
+  }
+
+  // Cross-origin fonts/images (CDNs) → Cache First with background update
+  if (!sameOrigin && ['style','script','image','font'].includes(request.destination)) {
+    return cacheFirst(request);
+  }
+
+  // Default → try cache, then network
+  return staleWhileRevalidate(request);
+}
+
+self.addEventListener('fetch', (event) => {
+  // Only handle GET
+  if (event.request.method !== 'GET') return;
+  event.respondWith(strategyFor(event.request));
+});
+
+/* --- Strategies --- */
+
+async function networkFirst(request) {
+  const cache = await caches.open(APP_CACHE);
+  try {
+    const fresh = await fetch(request);
+    cache.put(request, fresh.clone());
+    return fresh;
+  } catch {
+    const cached = await cache.match(request);
+    if (cached) return cached;
+
+    // Fallback to cached index.html for SPA/hash routes
+    const fallback = await cache.match(`${BASE_PATH}index.html`);
+    return fallback || Response.error();
+  }
+}
+
+async function staleWhileRevalidate(request) {
+  const cache = await caches.open(APP_CACHE);
+  const cached = await cache.match(request);
+
+  const networkPromise = fetch(request)
+    .then((resp) => {
+      cache.put(request, resp.clone());
+      return resp;
+    })
+    .catch(() => null);
+
+  return cached || networkPromise || fetch(request);
+}
+
+async function cacheFirst(request) {
+  const cache = await caches.open(APP_CACHE);
+  const cached = await cache.match(request);
+  if (cached) {
+    // Update in background (no await)
+    fetch(request).then((resp) => cache.put(request, resp.clone())).catch(() => {});
+    return cached;
+  }
+  try {
+    const fresh = await fetch(request);
+    cache.put(request, fresh.clone());
+    return fresh;
+  } catch {
+    return Response.error();
+  }
+}
+
+/* Optional: receive a message from the page to skip waiting immediately */
+self.addEventListener('message', (event) => {
+  if (event.data === 'SKIP_WAITING') self.skipWaiting();
+});
+
+
+// Add thus to index page Always change cache Name on Reuse
+<script>
+  (function() {
+    if (!('serviceWorker' in navigator)) return;
+
+    const BASE_PATH = location.pathname.replace(/[^/]+$/, ''); // e.g., "/Olajide-azeezportfolio/"
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register(BASE_PATH + 'sw.js', { scope: BASE_PATH })
+        .then((reg) => {
+          // Check for updates periodically (every hour)
+          setInterval(() => reg.update(), 60 * 60 * 1000);
+
+          // If a new worker is installed, auto-activate & refresh
+          reg.addEventListener('updatefound', () => {
+            const newSW = reg.installing;
+            if (!newSW) return;
+            newSW.addEventListener('statechange', () => {
+              if (newSW.state === 'installed' && navigator.serviceWorker.controller) {
+                // Tell SW to activate immediately, then we'll reload on controllerchange
+                navigator.serviceWorker.controller.postMessage('SKIP_WAITING');
+              }
+            });
+          });
+        })
+        .catch(console.error);
+
+      // Once the new SW takes control, refresh the page (auto-update UX)
+      let refreshing = false;
+      navigator.serviceWorker.addEventListener('controllerchange', () => {
+        if (refreshing) return;
+        refreshing = true;
+        location.reload();
+      });
+    });
+  })();
+</script>
+
