@@ -240,7 +240,53 @@ footer { text-align: center; padding: 1.5rem; background: var(--header-bg); colo
   </section>
   <!-- Font Awesome CDN (latest version) -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<!-- ==== Resume Download (paste anywhere on your portfolio page) ==== -->
+<div class="btn-row" id="resume-download">
+  <a class="btn" 
+     href="https://raw.githubusercontent.com/slide-t/Olajide-azeezportfolio/main/Resume/Olajide_Azeez_Resume.pdf" 
+     download="Olajide_Azeez_Resume.pdf">
+    <!-- Inline download icon (theme-aware) -->
+    <svg aria-hidden="true" viewBox="0 0 24 24" width="18" height="18" style="margin-right:8px">
+      <path fill="currentColor" d="M12 3a1 1 0 0 1 1 1v8.59l2.3-2.3a1 1 0 1 1 1.4 1.42l-4 4a1 1 0 0 1-1.4 0l-4-4a1 1 0 0 1 1.4-1.42L11 12.59V4a1 1 0 0 1 1-1z"/>
+      <path fill="currentColor" d="M5 17a1 1 0 0 1 1-1h12a1 1 0 1 1 0 2H6a1 1 0 0 1-1-1z"/>
+    </svg>
+    Download Résumé (PDF)
+  </a>
 
+  <a class="btn btn-outline" 
+     href="https://raw.githubusercontent.com/slide-t/Olajide-azeezportfolio/main/Resume/Olajide_Azeez_Resume.docx" 
+     download="Olajide_Azeez_Resume.docx">
+    <svg aria-hidden="true" viewBox="0 0 24 24" width="18" height="18" style="margin-right:8px">
+      <path fill="currentColor" d="M6 2h9l5 5v13a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2zM14 3v5h5"/>
+      <path fill="currentColor" d="M8 13h1.3l1 3.2h.1L11.6 13H13l-1.8 5H9.6L8.9 15h-.1l-.7 3H7L5.2 13h1.4l.8 3h.1l.6-3z"/>
+    </svg>
+    Download (DOCX)
+  </a>
+</div>
+
+<!-- Theme-aware helpers (uses your existing CSS variables) -->
+<style>
+  .btn-row{
+    display:flex; gap:10px; flex-wrap:wrap; align-items:center; justify-content:center;
+    margin: 1rem 0;
+  }
+  /* Uses your existing .btn base; adding an outline variant that respects themes */
+  .btn.btn-outline{
+    background: transparent;
+    color: var(--primary);
+    border: 1.5px solid var(--primary);
+  }
+  .btn.btn-outline:hover{
+    background: var(--primary);
+    color: #fff;
+  }
+
+  /* Make the buttons comfy on small screens */
+  .btn-row .btn{
+    display:inline-flex; align-items:center; justify-content:center;
+    min-width: 220px; text-align:center;
+  }
+</style>
 <style>
   #contact {
     text-align: center;
