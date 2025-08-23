@@ -1,3 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Olajide Azeez | Portfolio</title>
+  <style>
+    :root {
+      --bg: #f9f9f9;
+      --text: #333333;
+      --muted: #666666;
+      --primary: #005f73;
+      --primary-strong: #0a9396;
+      --header-bg: #001219;
+      --card-bg: #ffffff;
+      --shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+    [data-theme="dark"] {
+      --bg: #0b0f13;
+      --text: #e6e6e6;
+      --muted: #b3b3b3;
+      --primary: #3aa6b9;
+      --primary-strong: #65c0c7;
+      --header-bg: #000a0f;
+      --card-bg: #0f141a;
+      --shadow: 0 8px 20px rgba(0,0,0,0.35);
+    }
+    [data-theme="purple"] {
+      --bg: #faf6ff;
+      --text: #2b1d35;
+      --muted: #6e4f86;
+      --primary: #7b2cbf;
+      --primary-strong: #9d4edd;
+      --header-bg: #240046;
+      --card-bg: #fff;
+      --shadow: 0 4px 10px rgba(123,44,191,0.2);
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      color: var(--text);
+      background: var(--bg);
+      transition: background .3s ease, color .3s ease;
+      font-size: 16px;
+    }
+
+    header {
+      background: var(--header-bg);
+      color: white;
+      padding: 2rem;
+      text-align: center;
+    }
+    header h1 { margin: 0; font-size: 2.5rem; }
+    header p { margin: .5rem 0 0; font-size: 1.2rem; color: #e6f1f2; }
+
+    nav { background: var(--primary); padding: 1rem; text-align: center; }
+    nav a { color: white; margin: 0 15px; text-decoration: none; font-weight: bold; }
+    nav a:hover { text-decoration: underline; }
+
+    section { max-width: 900px; margin: 2rem auto; padding: 0 1rem; }
+    h2 { 
+      color: var(--header-bg); 
+      margin-bottom: 1rem; 
+      border-bottom: 2px solid var(--primary); 
+      display: inline-block; 
+      padding-bottom: 5px;
+    }
+    [data-theme="dark"] h2 { color: #e9f6f7; }
+    [data-theme="purple"] h2 { color: var(--primary); }
+
+    .projects { 
+      display: grid; 
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); 
+      gap: 1.5rem; 
+    }
+    .card {
+      background: var(--card-bg);
+      border-radius: 10px;
+      box-shadow: var(--shadow);
+      padding: 1rem;
+      transition: transform .3s ease, box-shadow .3s ease, background .3s ease;
+      border: 1px solid rgba(0,0,0,0.05);
+    }
+    [data-theme="dark"] .card { border-color: rgba(255,255,255,0.06); }
+    .card:hover { transform: translateY(-5px); box-shadow: 0 10px 22px rgba(0,0,0,0.18); }
+    .card img { max-width: 100%; border-radius: 10px; display: block; }
+
+    .btn { 
+      display: inline-block; padding: 10px 20px; margin-top: 10px; 
+      background: var(--primary); color: white; border-radius: 5px; 
+      text-decoration: none; transition: background .3s; 
+    }
+    .btn:hover { background: var(--primary-strong); }
+
+    footer { text-align: center; padding: 1.5rem; background: var(--header-bg); color: white; }
+
+    /* Floating Gear */
+    .fab {
+      position: fixed;
+      right: 16px; bottom: 16px;
+      width: 52px; height: 52px;
+      border: none; border-radius: 50%;
+      background: var(--primary);
+      box-shadow: var(--shadow);
+      color: #fff; cursor: pointer;
+      display: inline-flex; align-items: center; justify-content: center;
+      transition: background .3s ease, box-shadow .3s ease;
+      font-size: 24px;
+      z-index: 1000;
+      animation: spin 2s linear infinite;
+    }
+    @keyframes spin { from { transform: rotate(0); } to { transform: rotate(360deg); } }
+
+    /* Settings Panel */
+    #settingsPanel {
+      position: fixed;
+      bottom: 80px;
+      right: 16px;
+      background: var(--card-bg);
+      border-radius: 10px;
+      box-shadow: var(--shadow);
+      padding: 1rem;
+      display: none;
+      z-index: 999;
+    }
+    #settingsPanel button {
+      display: block;
+      margin: 0.5rem 0;
+      padding: 0.5rem 1rem;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      background: var(--primary);
+      color: #fff;
+    }
+    #settingsPanel button:hover {
+      background: var(--primary-strong);
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Olajide Azeez</h1>
+    <p>Web Developer | Educator | Tech Enthusiast</p>
+  </header>
+
+  <nav>
+    <a href="#about">About</a>
+    <a href="#skills">Skills</a>
+    <a href="#projects">Projects</a>
+    <a href="#contact">Contact</a>
+  </nav>
+
+  <section id="about">
+    <h2>About Me</h2>
+    <p>I’m Olajide Azeez, passionate about building clean, modern, and user-friendly applications. With skills in web technologies, networking, and education, I create solutions that make a difference.</p>
+  </section>
+
+  <section id="skills">
+    <h2>Skills</h2>
+    <ul>
+      <li>HTML, CSS, JavaScript</li>
+      <li>React, Node.js</li>
+      <li>UI/UX Design</li>
+      <li>Database Management</li>
+    </ul>
+  </section>
+
+  <section id="projects">
+    <h2>Projects</h2>
+    <div class="projects">
+      <div class="card">
+        <img src="https://via.placeholder.com/300x200" alt="Project 1">
+        <h3>SmartKids Coding</h3>
+        <p>Interactive blog teaching kids unplugged coding activities.</p>
+        <a href="#" class="btn">View Project</a>
+      </div>
+      <div class="card">
+        <img src="https://via.placeholder.com/300x200" alt="Project 2">
+        <h3>Essential Kitchen Gear</h3>
+        <p>E-commerce hub for culinary gadgets and reviews.</p>
+        <a href="#" class="btn">View Project</a>
+      </div>
+      <div class="card">
+        <img src="https://via.placeholder.com/300x200" alt="Project 3">
+        <h3>Maths Game</h3>
+        <p>Cambridge-aligned math games for schools.</p>
+        <a href="#" class="btn">View Project</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <h2>Contact</h2>
+    <p>If you'd like to work with me, feel free to reach out!</p>
+    <p>Email: <a href="mailto:olajideaz1030@gmail.com">olajideaz1030@gmail.com</a></p>
+    <p>WhatsApp: <a href="https://wa.me/2349046464822" target="_blank">+2349046464822</a></p>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Olajide Azeez. All Rights Reserved.</p>
+  </footer>
+
+  <!-- Gear Button -->
+  <button id="gear" class="fab" title="Settings">⚙️</button>
+
+  <!-- Settings Panel -->
+  <div id="settingsPanel">
+    <button onclick="toggleTheme()">Toggle Dark/Light</button>
+    <button onclick="setTheme('purple')">Switch to Purple</button>
+    <button onclick="increaseFont()">Increase Font</button>
+    <button onclick="decreaseFont()">Decrease Font</button>
+  </div>
+
+  <script>
+    const root = document.documentElement;
+    const gear = document.getElementById('gear');
+    const panel = document.getElementById('settingsPanel');
+    let fontSize = 16;
+
+    // Toggle panel
+    gear.addEventListener('click', () => {
+      panel.style.display = panel.style.display === 'block' ? 'none' : 'block';
+    });
+
+    // Theme toggles
+    function toggleTheme() {
+      if (root.getAttribute('data-theme') === 'dark') {
+        root.removeAttribute('data-theme');
+      } else {
+        root.setAttribute('data-theme', 'dark');
+      }
+    }
+    function setTheme(scheme) {
+      root.setAttribute('data-theme', scheme);
+    }
+
+    // Font size controls
+    function increaseFont() {
+      fontSize += 2;
+      document.body.style.fontSize = fontSize + 'px';
+    }
+    function decreaseFont() {
+      fontSize = Math.max(12, fontSize - 2);
+      document.body.style.fontSize = fontSize + 'px';
+    }
+
+    // Gear spin cycle: 5s spin, 2s pause
+    setInterval(() => {
+      gear.style.animationPlayState = 'paused';
+      setTimeout(() => {
+        gear.style.animationPlayState = 'running';
+      }, 2000);
+    }, 5000);
+  </script>
+</body>
+</html>
+
+
+
+
+<!--
 <!DOCTYPE html><html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -155,7 +420,8 @@ footer { text-align: center; padding: 1.5rem; background: var(--header-bg); colo
     <a href="https://linkedin.com/in/yourprofile" class="btn">Connect on LinkedIn</a>
   </section>  <footer>
     <p>&copy; 2025 [Your Name]. All Rights Reserved.</p>
-  </footer>  <!-- Floating theme toggle (gear) -->  <button id="themeToggle" class="fab" aria-label="Toggle dark theme" aria-pressed="false" title="Toggle dark theme">
+  </footer>  <!-- Floating theme toggle (gear) --
+<button id="themeToggle" class="fab" aria-label="Toggle dark theme" aria-pressed="false" title="Toggle dark theme">
     <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
       <path d="M12 15.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7Z" stroke="currentColor" stroke-width="1.5"/>
       <path d="M19.4 13.5a7.9 7.9 0 0 0 .06-3l2.03-1.17a.8.8 0 0 0 .3-1.1l-1.9-3.29a.8.8 0 0 0-1.03-.34l-2.15.9a8 8 0 0 0-2.6-1.5l-.33-2.31a.8.8 0 0 0-.79-.68H10a.8.8 0 0 0-.78.68l-.33 2.31a8 8 0 0 0-2.6 1.5l-2.15-.9a.8.8 0 0 0-1.03.34L1.21 8.23a.8.8 0 0 0 .3 1.1L3.55 10.5a7.9 7.9 0 0 0-.06 3l-2.03 1.17a.8.8 0 0 0-.3 1.1l1.9 3.29c.2.35.64.5 1.03.34l2.15-.9c.77.62 1.65 1.13 2.6 1.5l.33 2.31c.06.4.4.68.8.68h3.98c.4 0 .74-.28.79-.68l.33-2.31c.95-.37 1.83-.88 2.6-1.5l2.15.9c.39.16.84.01 1.03-.34l1.9-3.29a.8.8 0 0 0-.3-1.1L19.4 13.5Z" stroke="currentColor" stroke-width="1.2"/>
