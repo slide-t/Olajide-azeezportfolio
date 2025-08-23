@@ -238,27 +238,62 @@ footer { text-align: center; padding: 1.5rem; background: var(--header-bg); colo
       </div>
     </div>
   </section>
-  <section id="contact">
+  <!-- Font Awesome CDN (latest version) -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<style>
+  #contact {
+    text-align: center;
+    padding: 40px 20px;
+  }
+
+  #contact a {
+    display: inline-block;
+    margin: 10px;
+    text-decoration: none;
+    color: #001219;
+    font-size: 18px;
+    transition: color 0.3s ease;
+  }
+
+  /* Icons */
+  #contact i {
+    font-size: 28px;
+    margin-right: 10px;
+    transition: transform 0.3s ease;
+  }
+
+  /* Zoom effect on hover */
+  #contact a:hover i {
+    transform: scale(1.3);
+    color: #25D366; /* WhatsApp green for WhatsApp */
+  }
+
+  /* Keep email icon blue-ish on hover */
+  #contact a[href^="mailto"]:hover i {
+    color: #0072c6;
+  }
+</style>
+
+<section id="contact">
   <h2>Contact</h2>
   <p>If you'd like to work with me, feel free to reach out!</p>
-  <div class="contact-icons">
+  
+  <p>
     <a href="mailto:olajideaz1030@gmail.com" target="_blank">
-      <i class="fas fa-envelope"></i>
+      <i class="fa-solid fa-envelope"></i> 
+      olajideaz1030@gmail.com
     </a>
+  </p>
+  
+  <p>
     <a href="https://wa.me/2349046464822" target="_blank">
-      <i class="fab fa-whatsapp"></i>
+      <i class="fa-brands fa-whatsapp"></i> 
+      +2349046464822
     </a>
-  </div>
+  </p>
 </section>
   
-  <!--
-  <section id="contact">
-    <h2>Contact</h2>
-    <p>If you'd like to work with me, feel free to reach out!</p>
-    <p>Email: <a href="mailto:olajideaz1030@gmail.com">olajideaz1030@gmail.com</a></p>
-    <p>WhatsApp: <a href="https://wa.me/2349046464822" target="_blank">+2349046464822</a></p>
-  </section>
--->
   <footer>
     <p>&copy; 2025 Olajide Azeez. All Rights Reserved.</p>
   </footer>
